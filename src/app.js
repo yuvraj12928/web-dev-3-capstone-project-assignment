@@ -17,9 +17,13 @@ const reportRoutes = require('./routes/reportRoutes');
 dotenv.config();
 
 const app = express();
+const allowedOrigins = (process.env.CLIENT_URL || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || '*',
+  origin: allowedOrigins.length ? allowedOrigins : false,
   credentials: true,
 }));
 app.use(express.json());
@@ -28,6 +32,14 @@ app.use(morgan('dev'));
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ success: true, message: 'Campus management backend is running.' });
+});
+
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'University Campus Management API',
+    health: '/api/health',
+  });
 });
 
 app.use('/api/auth', authRoutes);

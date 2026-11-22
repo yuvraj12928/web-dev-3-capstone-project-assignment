@@ -113,6 +113,9 @@ const refreshToken = async (req, res, next) => {
       },
     });
   } catch (error) {
+    if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
+      return res.status(401).json({ success: false, message: 'Invalid or expired refresh token' });
+    }
     next(error);
   }
 };

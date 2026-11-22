@@ -17,9 +17,13 @@ const createAnnouncement = async (req, res, next) => {
 
     const socket = getSocket();
     if (socket) {
-      const room = audience === 'course' ? `course:${course}` : audience === 'section' ? `section:${section}` : 'all';
-      socket.to(room).emit('announcement-created', announcement);
-      socket.emit('announcement-created', announcement);
+      if (announcement.audience === 'course') {
+        socket.to(`course:${announcement.course}`).emit('announcement-created', announcement);
+      } else if (announcement.audience === 'section') {
+        socket.to(`section:${announcement.section}`).emit('announcement-created', announcement);
+      } else {
+        socket.emit('announcement-created', announcement);
+      }
     }
 
     eventBus.emit('announcementCreated', {
