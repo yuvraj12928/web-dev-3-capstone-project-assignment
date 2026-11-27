@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>CampusOS — Campus management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="login-screen" class="login-screen hidden">
+    <div class="login-card">
+      <a class="brand" href="#"><span class="brand-mark">C</span><span>campus<span class="brand-light">OS</span></span></a>
+      <div class="login-copy"><span class="eyebrow">CAMPUS MANAGEMENT</span><h1>Good to have<br>you back.</h1><p>Sign in to keep your campus moving.</p></div>
+      <form id="login-form" class="form-stack">
+        <label>Email address<input name="email" type="email" placeholder="you@campus.edu" autocomplete="username" required></label>
+        <label>Password<input name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required></label>
+        <button class="button primary full" type="submit">Sign in <span>→</span></button>
+        <p id="login-error" class="form-error"></p>
+      </form>
+      <p class="login-foot">University Campus Management System</p>
+    </div>
+    <div class="login-art"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-center"><span>✳</span></div><div class="art-note note-one">One campus.<br>Everything connected.</div><div class="art-note note-two">Learn · Teach · Grow</div></div>
+  </div>
+
+  <div id="app" class="app-shell hidden">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard"><span class="brand-mark">C</span><span>campus<span class="brand-light">OS</span></span></a>
+      <div class="workspace"><span class="workspace-logo">U</span><span><strong>University campus</strong><small>Management portal</small></span><span class="chevron">⌄</span></div>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav" id="main-nav">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">▦</span>Overview</button>
+        <button class="nav-item" data-page="courses"><span class="nav-icon">▤</span>Courses</button>
+        <button class="nav-item" data-page="announcements"><span class="nav-icon">◉</span>Announcements</button>
+        <button class="nav-item" data-page="attendance"><span class="nav-icon">◷</span>Attendance</button>
+        <button class="nav-item admin-only" data-page="people"><span class="nav-icon">♧</span>People</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="help-card"><span class="help-spark">✦</span><strong>Need a hand?</strong><p>Your campus workspace, all in one place.</p><button id="help-button">Explore the portal <span>↗</span></button></div><button class="nav-item" id="logout-button"><span class="nav-icon">↪</span>Sign out</button><div class="profile" id="profile"></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="crumb"><span>Workspace</span><b>/</b><strong id="crumb-page">Overview</strong></div><div class="top-actions"><span class="today-label" id="today-label"></span><button class="icon-button" id="refresh-button" title="Refresh data">↻</button><span class="online-dot"></span><span class="online-text">All systems live</span><span id="top-avatar" class="avatar">U</span></div></header>
+      <div id="toast" class="toast" role="status"></div>
+      <section id="page-content" class="page-content"></section>
+      <footer class="footer">CampusOS <span>·</span> University Campus Management <span>·</span> <span id="footer-year"></span></footer>
+    </main>
+  </div>
+  <div id="modal-root"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
